@@ -80,7 +80,6 @@ return {
       "dot",
       "fish",
       "go",
-      "godot",
       "help",
       "html",
       "java",
