@@ -1,7 +1,7 @@
 return {
   { --{{{ lspconfig
     "neovim/nvim-lspconfig",
-    event = "BufRead",
+    event = "BufReadPre",
     dependencies = {
       {
         "williamboman/mason.nvim",
@@ -34,13 +34,16 @@ return {
         end,
       },
     },
+    config = function()
+      require("plugins/lsp/sumneko")
+    end,
   }, --}}}
 
   { --{{{ formatter
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufRead",
     config = function()
-      require("configs.util").cetak("masuk mid")
+      -- require("configs.util").cetak("masuk mid")
 
       local null_ls = require("null-ls")
 

@@ -14,4 +14,7 @@ vim.keymap.set("i", "<A-k>", "<up>")
 vim.keymap.set("i", "<A-j>", "<down>")
 
 -- source
-vim.keymap.set("n", "<leader>s", "<cmd>source %<cr>")
+-- vim.keymap.set("n", "<leader>s", "<cmd>source %<cr>")
+
+-- close buffer
+vim.keymap.set("n", "<A-j>", "<CMD>bd!<CR>")

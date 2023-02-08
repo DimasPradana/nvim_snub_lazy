@@ -15,6 +15,11 @@ return {
       "<CMD>Neotree action=focus source=filesystem position=left toggle=true<CR>",
       desc = "toggle neotree",
     },
+    {
+      "<leader>eb",
+      "<CMD>Neotree action=focus source=buffers position=right toggle=true<CR>",
+      desc = "toggle buffer",
+    },
   },
   config = function()
     require("neo-tree").setup({

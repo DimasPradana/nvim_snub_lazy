@@ -17,9 +17,9 @@ local TelescopePrompt = {
     bg = "NONE",
   },
   --[[ TelescopeSelection = {
-	fg = "#24283b",
-	bg = "#e0af68",
-	}, ]]
+    fg = "#24283b",
+    bg = "#e0af68",
+  }, ]]
 }
 
 for hl, col in pairs(TelescopePrompt) do
@@ -45,6 +45,25 @@ return {
     { "<leader>fb", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
     { "<leader>fg", "<CMD>lua require('telescope.builtin').grep_string()<CR>", desc = "Grep String" },
     { "<leader>fw", "<CMD>lua require('telescope.builtin').live_grep()<CR>", desc = "Live Grep" },
+    { "<leader>fc", "<CMD>lua require('telescope.builtin').commands()<CR>", desc = "Todo Telescope" },
+    { "<leader>fk", "<CMD>lua require('telescope.builtin').keymaps()<CR>", desc = "Keymaps" },
+    { "<leader>fr", "<CMD>lua require('telescope.builtin').registers()<CR>", desc = "Registers" },
+    { "<leader>fh", "<CMD>lua require('telescope.builtin').highlights()<CR>", desc = "Highlights" },
+    { "<leader>fd", "<CMD>TodoTelescope<CR>", desc = "Todo Telescope" },
+    {
+      "<leader>fe",
+      "<CMD>lua require('telescope.builtin').symbols{sources = {'emoji','kaomoji','gitmoji'}}<CR>",
+      desc = "Live Grep",
+    },
+    -- LSP
+    { "<leader>fi", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", desc = "Implementations" },
+    { "<leader>fd", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", desc = "Definitions" },
+    { "<leader>ftd", "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", desc = "Type Definitions" },
+    { "<leader>fdi", "<CMD>lua require('telescope.builtin').diagnostics()<CR>", desc = "Diagnostics" },
+    --
+    { "<leader>fp", "<CMD>lua require('telescope.builtin').pickers()<CR>", desc = "Pickers" },
+    { "<leader>fm", "<CMD>lua require('telescope.builtin').marks()<CR>", desc = "Marks" },
+    { "<leader>fl", "<CMD>lua require('telescope.builtin').loclist()<CR>", desc = "Location List" },
   },
   config = function()
     require("telescope").setup({

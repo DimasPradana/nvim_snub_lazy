@@ -4,6 +4,7 @@
 
 -- load colorscheme
 require("tokyonight").load()
+-- vim.cmd("colorscheme murphy")
 
 -- Visual
 vim.o.conceallevel = 0 -- Make `` Visible in Markdown
@@ -29,7 +30,9 @@ vim.o.imsearch = 1 -- set imsearch
 -- vim.wo.fillchars = "fold:\\"
 vim.wo.foldnestmax = 3
 vim.wo.foldminlines = 1
+
 vim.opt.laststatus = 3
+vim.opt.clipboard = "unnamedplus" -- access system clipboard
 
 -- Vim specific
 vim.o.hidden = true -- Do not save when switching buffers
@@ -63,7 +66,7 @@ vim.o.shiftwidth = 2
 -- vim.o.scrolloff     = 99 -- Vertical Scroll Offset
 -- vim.o.scrolloff       = 21  	    -- Vertical Scroll Offset
 vim.o.sidescrolloff = 8 -- Horizontal Scroll Offset
-vim.o.mouse = "a" -- Enable mouse mode
+-- vim.o.mouse = "a" -- Enable mouse mode
 
 -- Disable some default plugins
 vim.g.loaded_2html_plugin = false
@@ -91,11 +94,60 @@ vim.g.loaded_man = false
 vim.g.loaded_remote_plugins = false
 vim.g.did_load_filetypes = false
 
+-- kitty
+-- " Mouse support
+vim.o.mouse = a
+vim.o.ttymouse = sgr
+vim.o.balloonevalterm = true
+-- " Styled and colored underline support
+--[[ let &t_AU = "\e[58:5:%dm"
+let &t_8u = "\e[58:2:%lu:%lu:%lum"
+let &t_Us = "\e[4:2m"
+let &t_Cs = "\e[4:3m"
+let &t_ds = "\e[4:4m"
+let &t_Ds = "\e[4:5m"
+let &t_Ce = "\e[4:0m"
+" Strikethrough
+let &t_Ts = "\e[9m"
+let &t_Te = "\e[29m"
+" Truecolor support
+let &t_8f = "\e[38:2:%lu:%lu:%lum"
+let &t_8b = "\e[48:2:%lu:%lu:%lum"
+let &t_RF = "\e]10;?\e\\"
+let &t_RB = "\e]11;?\e\\"
+" Bracketed paste
+let &t_BE = "\e[?2004h"
+let &t_BD = "\e[?2004l"
+let &t_PS = "\e[200~"
+let &t_PE = "\e[201~"
+" Cursor control
+let &t_RC = "\e[?12$p"
+let &t_SH = "\e[%d q"
+let &t_RS = "\eP$q q\e\\"
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[1 q"
+let &t_VS = "\e[?12l"
+" Focus tracking
+let &t_fe = "\e[?1004h"
+let &t_fd = "\e[?1004l"
+execute "set <FocusGained>=\<Esc>[I"
+execute "set <FocusLost>=\<Esc>[O"
+" Window title
+let &t_ST = "\e[22;2t"
+let &t_RT = "\e[23;2t"
+
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce. This causes incorrect background rendering when
+" using a color theme with a background color in terminals such as
+" kitty that do not support background color erase.
+let &t_ut='' ]]
+
 -- winbar
 -- vim.o.winbar = "%{%v:lua.require('utils').eval()%}"
 
 -- navic
--- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
+vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- formatter on save
 -- vim.api.nvim_exec(
