@@ -144,7 +144,7 @@ let &t_RT = "\e[23;2t"
 let &t_ut='' ]]
 
 -- winbar
--- vim.o.winbar = "%{%v:lua.require('utils').eval()%}"
+-- vim.o.winbar = "%{%v:lua.require('configs/util').eval()%}"
 
 -- navic
 vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
