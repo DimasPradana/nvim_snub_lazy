@@ -3,7 +3,8 @@ local c = require("plugins/lsp/utils")
 local u = require("configs/util")
 local navic = require("nvim-navic")
 
-require("lspconfig").sumneko_lua.setup({
+-- require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
   cmd = {
     -- sumneko_root .. "/bin/Linux/lua-language-server",
     sumneko_root .. "/bin/lua-language-server",
@@ -23,7 +24,7 @@ require("lspconfig").sumneko_lua.setup({
       },
       diagnostics = {
         enable = true,
-        globals = { "vim", "awesome", "use", "client", "root", "s", "screen" },
+        globals = { "vim", "awesome", "use", "client", "root", "s", "screen", "augroup" },
       },
       workspace = {
         library = {

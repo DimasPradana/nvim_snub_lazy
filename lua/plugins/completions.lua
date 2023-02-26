@@ -3,7 +3,7 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "rafamadriz/friendly-snippets",
+      "DimasPradana/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
@@ -204,4 +204,5 @@ return {
   },
 }
 
+-- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker

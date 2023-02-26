@@ -171,13 +171,13 @@ vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- Highlight on yank
 vim.api.nvim_exec(
-  [[
+	[[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup END
 ]],
-  false
+	false
 )
 
 -- NOTE: cabbrev from W to w
@@ -211,4 +211,7 @@ vim.cmd([[
 --  autocmd CursorHold,CursorHoldI * lua require('code_action_utils').code_action_listener()
 -- ]])
 
+vim.diagnostic.config({
+	virtual_text = false
+})
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker

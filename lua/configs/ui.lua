@@ -220,3 +220,8 @@ api.nvim_exec(
 --     )
 --   end
 -- end
+
+-- disable default diagnostic
+vim.diagnostic.config({
+  virtual_text = false,
+})
