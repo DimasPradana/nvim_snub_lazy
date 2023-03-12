@@ -130,6 +130,7 @@ return {
           { name = "nvim_lua" },
           { name = "nvim_lsp_signature_help" },
           -- { name = "cmp_tabnine" },
+          { name = "copilot" },
         }),
         preselect = cmp.PreselectMode.None,
         view = {
@@ -204,5 +205,4 @@ return {
   },
 }
 
--- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
