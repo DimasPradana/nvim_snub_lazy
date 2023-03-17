@@ -7,7 +7,8 @@ return {
   },
   keys = {
     { "<leader>ch", "<CMD>ChatGPT<CR>", desc = "Chat GPT" },
-    -- { "<leader>cac", "<CMD>ChatGPTActionAs<CR>", desc = "Chat GPT" },
+    { "<leader>cac", "<CMD>ChatGPTActAs<CR>", desc = "Chat GPT Action as" },
+    { "<leader>cin", "<CMD>ChatGPTEditWithInstructions<CR>", desc = "Chat GPT with Instructs" },
   },
   config = function()
     local cg = require("chatgpt")
@@ -85,4 +86,5 @@ return {
     })
   end,
 }
+-- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
