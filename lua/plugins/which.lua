@@ -86,6 +86,7 @@ return {
     wk.register({
       ["<leader>"] = {
         lu = { "<CMD>echo '｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡' | luafile %<CR>", "source lua" },
+        lc = { "<CMD>lua  =vim.lsp.get_active_clients()[1].server_capabilities<CR>", "LSP capabilities" },
       },
     })
   end,

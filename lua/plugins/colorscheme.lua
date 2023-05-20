@@ -11,7 +11,9 @@ return {
           hl.LineNrAbove = { fg = c.fg_gutter }
           hl.LineNrBelow = { fg = c.fg_gutter }
           hl.StatusLine = { fg = c.fg, bg = c.bg }
-          hl.StatusLineNC = { fg = c.fg, bg = c.bg }
+          -- hl.StatusLineNC = { fg = c.fg, bg = c.bg }
+          hl.StatusLineNC = { fg = c.fg }
+          -- hl.StatusLineNC = { fg = c.fg, bg = c.bg }
         end,
       })
     end,

@@ -53,7 +53,7 @@ return {
       local luasnip = require("luasnip")
 
       cmp.setup({
-        max_item_count = 5, -- limit supaya tailwind tidak berat
+        max_item_count = 5, -- limit supaya tailwindcss tidak berat
         snippet = {
           expand = function(args)
             -- vim.fn["vsnip#anonymous"](args.body)
@@ -73,6 +73,7 @@ return {
             winhighlight = "Normal:Pmenu,FloatBorder:Character,Cursorline:IncSearch,Search:None",
             side_padding = 0,
             col_offset = 0,
+            border,
           }),
         },
         mapping = cmp.mapping.preset.insert({

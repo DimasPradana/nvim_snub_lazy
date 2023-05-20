@@ -64,10 +64,13 @@ return {
     { "<leader>fp", "<CMD>lua require('telescope.builtin').pickers()<CR>", desc = "Pickers" },
     { "<leader>fm", "<CMD>lua require('telescope.builtin').marks()<CR>", desc = "Marks" },
     { "<leader>fl", "<CMD>lua require('telescope.builtin').loclist()<CR>", desc = "Location List" },
+    { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
   },
   config = function()
     require("telescope").setup({
       defaults = {
+        layout_strategy = "flex",
+
         -- Default configuration for telescope goes here:
         -- config_key = value,
         mappings = {
@@ -75,7 +78,9 @@ return {
             -- map actions.which_key to <C-h> (default: <C-/>)
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-            -- ["<C-h>"] = "which_key"
+            -- ["<C-h>"] = "which_key",
+            ["<Esc>"] = "close",
+            ["<C-[>"] = "close",
           },
           n = {
             -- map actions.which_key to <C-h> (default: <C-/>)
@@ -83,6 +88,52 @@ return {
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             -- ["<C-h>"] = "which_key"
           },
+        },
+        file_ignore_patterns = {
+          "%.class$",
+          "%.dmg$",
+          "%.gif$",
+          "%.gz$",
+          "%.iso$",
+          "%.jar$",
+          "%.jpg$",
+          "%.jpeg$",
+          "%.JPEG$",
+          "%.mkv$",
+          "%.mp4$",
+          "%.o$",
+          "%.otf$",
+          "%.out$",
+          "%.pdf$",
+          "%.png$",
+          "%.PNG$",
+          "%.pyc$",
+          "%.pyi$",
+          "%.tar",
+          "%.torrent$",
+          "%.ttf$",
+          "%.webm$",
+          "%.webp$",
+          "%.zip$",
+          "^.dart_tool/",
+          "^.git/",
+          "^.github/",
+          "^.gradle/",
+          "^.idea/",
+          "^.settings/",
+          "^.vscode/",
+          "^.env/",
+          "^__pycache__/",
+          "^bin/",
+          "^build/",
+          "^env/",
+          "^gradle/",
+          "^node_modules/",
+          "^obj/",
+          "^target/",
+          "^vendor/",
+          "^zig%-cache/",
+          "^zig%-out/",
         },
       },
       pickers = {
@@ -117,6 +168,8 @@ return {
         },
         buffers = {
           theme = "ivy",
+          prompt_prefix = "   ",
+          path_display = { "smart" },
         },
       },
       extensions = {
@@ -126,29 +179,29 @@ return {
         -- }
         -- please take a look at the readme of the extension you want to configure
         lsp_handlers = {
-        disable = {},
-        location = {
-        	telescope = {},
-         		no_results_message = "No references found",
-         	},
-         	symbol = {
-         		telescope = {},
-         		no_results_message = "No symbols found",
-         	},
-         	call_hierarchy = {
-         		telescope = {},
-         		no_results_message = "No calls found",
-         	},
-         	code_action = {
-         		telescope = {
-         			require("telescope.themes").get_dropdown({}), -- contoh untuk dropdown
-         		},
-         		no_results_message = "No code actions available",
-         		prefix = "",
-         	},
-         },
+          disable = {},
+          location = {
+            telescope = {},
+            no_results_message = "No references found",
+          },
+          symbol = {
+            telescope = {},
+            no_results_message = "No symbols found",
+          },
+          call_hierarchy = {
+            telescope = {},
+            no_results_message = "No calls found",
+          },
+          code_action = {
+            telescope = {
+              require("telescope.themes").get_cursor({}), -- contoh untuk dropdown
+            },
+            no_results_message = "No code actions available",
+            prefix = "",
+          },
+        },
         ["ui-select"] = {
-          require("telescope.themes").get_dropdown({
+          require("telescope.themes").get_cursor({
             -- even more opts
           }),
         },
@@ -167,6 +220,10 @@ return {
         preview_cutoff = 120,
       },
     })
+
+    -- To get ui-select loaded and working with telescope, you need to call
+    -- load_extension, somewhere after setup function:
+    require("telescope").load_extension("ui-select")
   end,
 }
 

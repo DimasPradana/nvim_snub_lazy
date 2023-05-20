@@ -61,6 +61,35 @@ vim.opt.shortmess = { -- shorten message in prompt window
   F = true, -- don't give the file info when editing a file
   S = true, -- don't show search count message when searching
 }
+vim.opt.wildignore = { -- list of file patterns to ignore when expanding wildcards
+  "*.o",
+  "*.obj",
+  "*.a",
+  "*.so",
+  "*.out",
+  "*.class",
+  "*.pyc",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.gif",
+  "*.tiff",
+  "*.webp",
+  "*.pdf",
+  "*.odt",
+  "*.odp",
+  "*.doc",
+  "*.docx",
+  "*.ppt",
+  "*.csv",
+  "__pycache__",
+  "*pycache*",
+  "**/tmp/**",
+  "**/node_modules/**",
+  ".git",
+}
+vim.opt.wildmode = { "longest", "full" }
+vim.opt.wildoptions:remove({ "tagfile" })
 
 -- Vim specific
 vim.o.hidden = true -- Do not save when switching buffers
@@ -176,7 +205,8 @@ let &t_ut='' ]]
 -- vim.o.winbar = "%{%v:lua.require('configs/util').eval()%}"
 
 -- navic
-vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
+-- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
+vim.opt.statusline = " %(%r %)%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} "
 
 -- formatter on save
 -- vim.api.nvim_exec(

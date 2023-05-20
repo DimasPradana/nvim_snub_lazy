@@ -5,7 +5,6 @@ local M = {}
 
 -- possible values are 'arrow' | 'rounded' | 'blank'
 local active_sep = "blank"
-
 -- change them if you want to different separator
 M.separators = {
   arrow = { "", "" },
@@ -186,7 +185,7 @@ api.nvim_exec(
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
   augroup END
 ]],
-  false
+  true
 )
 
 ----[[
