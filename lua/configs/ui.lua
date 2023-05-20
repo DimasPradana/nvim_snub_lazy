@@ -10,7 +10,7 @@ local active_sep = "blank"
 M.separators = {
   arrow = { "", "" },
   rounded = { "", "" },
-  blank = { "", "" },
+  blank = { " ", " " },
 }
 
 -- highlight groups

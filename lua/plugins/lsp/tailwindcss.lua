@@ -49,7 +49,7 @@ require("lspconfig").tailwindcss.setup({
 		"vue",
 		"svelte",
 	}, ]]
-  filetypes = { "svelte" },
+  filetypes = { "svelte", "javascript", "javascriptreact", "typescript", "typescriptreact" },
   init_options = {
     --[[ userLanguages = {
 			eelixir = "html-eex",

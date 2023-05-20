@@ -8,8 +8,9 @@ require("tokyonight").load()
 
 -- Visual
 vim.o.conceallevel = 0 -- Make `` Visible in Markdown
-vim.o.cmdheight = 1 -- Better Error Messages
-vim.o.showtabline = 2 -- Always Show Tabline
+-- vim.o.cmdheight = 1 -- Better Error Messages
+vim.o.cmdheight = 0 -- disable command-line when not being used
+vim.o.showtabline = 1 -- Always Show Tabline
 vim.o.pumheight = 5 -- Pop up Menu Height
 vim.wo.number = true -- Display Line Number
 vim.wo.relativenumber = true -- Make relative line numbers default
@@ -32,7 +33,34 @@ vim.wo.foldnestmax = 3
 vim.wo.foldminlines = 1
 
 vim.opt.laststatus = 3
+vim.opt.pastetoggle = "<F2>"
+vim.opt.pumblend = 10 -- pseudo-transparency for the popup-menu, value : 0 - 100
 vim.opt.clipboard = "unnamedplus" -- access system clipboard
+vim.opt.cursorline = true -- highlight current line
+vim.opt.colorcolumn = { "+1" } -- draw a vertical ruler at (textwidth + 1 )th column
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  diff = "/",
+  eob = " ", -- use 'space' for lines after the last buffer line in a window
+}
+vim.opt.complete:remove({
+  "u", -- unload buffers
+  "t", -- tag completion
+})
+vim.opt.shortmess = { -- shorten message in prompt window
+  a = true, -- enable 'filmnrwx' flag
+  o = true, -- overwrite message for writing a file with subsequent message for reading a file
+  t = true, -- truncate file message at the start
+  s = true, -- don't give "search hit/continuing *" message
+  T = true, -- truncate other messages in the middle
+  W = true, -- don't give "written" or "[w]" when writing a file
+  I = true, -- don't give the intro message when starting Vim
+  c = true, -- don't give ins-completion-menu messages
+  C = true, -- don't give messages while scanning for ins-completion items
+  F = true, -- don't give the file info when editing a file
+  S = true, -- don't show search count message when searching
+}
 
 -- Vim specific
 vim.o.hidden = true -- Do not save when switching buffers
@@ -48,7 +76,8 @@ vim.o.fileencoding = "utf-8" -- Set File Encoding
 vim.o.spelllang = "en"
 vim.o.completeopt = "menu,menuone,noselect,noinsert,preview" -- Autocompletion
 vim.o.wrap = false -- set no wrap
-vim.opt.shortmess:append({ W = true, a = true })
+-- vim.opt.shortmess:append({ W = true, a = true })
+
 vim.o.undodir = vim.fn.stdpath("cache") .. "/undo"
 
 -- Behavior
@@ -96,9 +125,9 @@ vim.g.did_load_filetypes = false
 
 -- kitty
 -- " Mouse support
-vim.o.mouse = a
-vim.o.ttymouse = sgr
-vim.o.balloonevalterm = true
+-- vim.o.mouse = a
+-- vim.o.ttymouse = sgr
+-- vim.o.balloonevalterm = true
 -- " Styled and colored underline support
 --[[ let &t_AU = "\e[58:5:%dm"
 let &t_8u = "\e[58:2:%lu:%lu:%lum"
@@ -171,13 +200,13 @@ vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 -- Highlight on yank
 vim.api.nvim_exec(
-	[[
+  [[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup END
 ]],
-	false
+  false
 )
 
 -- NOTE: cabbrev from W to w
@@ -212,6 +241,6 @@ vim.cmd([[
 -- ]])
 
 vim.diagnostic.config({
-	virtual_text = false
+  virtual_text = false,
 })
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker

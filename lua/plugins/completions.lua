@@ -53,6 +53,7 @@ return {
       local luasnip = require("luasnip")
 
       cmp.setup({
+        max_item_count = 5, -- limit supaya tailwind tidak berat
         snippet = {
           expand = function(args)
             -- vim.fn["vsnip#anonymous"](args.body)

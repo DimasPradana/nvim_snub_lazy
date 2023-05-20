@@ -40,16 +40,32 @@ return {
         gitrebase = false,
         hgcommit = false,
         svn = false,
-        csv = false,
-        ["."] = false,
+        cvs = false,
+        ["*"] = false,
+        javascript = true,
+        javascriptreact = true,
+        typescript = true,
+        typescriptreact = true,
+        svelte = true,
+        go = true,
+        php = true,
+        python = true,
       },
       copilot_node_command = "node", -- Node.js version must be > 16.x
-      server_opts_overrides = {},
+      server_opts_overrides = {
+        trace = "verbose",
+        settings = {
+          advanced = {
+            listCount = 10, -- #completions for panel
+            inlineSuggestCount = 3, -- #completions for getCompletions
+          },
+        },
+      },
     })
   end,
   dependencies = {
     "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
+    dependencies = { "copilot.lua" },
     config = function()
       require("copilot_cmp").setup({
         formatters = {
