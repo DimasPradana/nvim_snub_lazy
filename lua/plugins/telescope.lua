@@ -37,7 +37,7 @@ return {
     -- "nvim-telescope/telescope-media-files.nvim",
     -- "nvim-telescope/telescope-fzy-native.nvim",
     "nvim-telescope/telescope-symbols.nvim",
-    -- "gbrlsnchs/telescope-lsp-handlers.nvim",
+    "gbrlsnchs/telescope-lsp-handlers.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
   },
   keys = {
@@ -49,21 +49,26 @@ return {
     { "<leader>fk", "<CMD>lua require('telescope.builtin').keymaps()<CR>", desc = "Keymaps" },
     { "<leader>fr", "<CMD>lua require('telescope.builtin').registers()<CR>", desc = "Registers" },
     { "<leader>fh", "<CMD>lua require('telescope.builtin').highlights()<CR>", desc = "Highlights" },
-    { "<leader>fd", "<CMD>TodoTelescope<CR>", desc = "Todo Telescope" },
+    { "<leader>fo", "<CMD>TodoTelescope<CR>", desc = "Todo Telescope" },
     {
       "<leader>fe",
       "<CMD>lua require('telescope.builtin').symbols{sources = {'emoji','kaomoji','gitmoji'}}<CR>",
-      desc = "Live Grep",
+      desc = "Emoji",
     },
     -- LSP
     { "<leader>fi", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", desc = "Implementations" },
-    { "<leader>fd", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", desc = "Definitions" },
-    { "<leader>ftd", "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", desc = "Type Definitions" },
+    { "<leader>fde", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", desc = "Definitions" },
+    { "<leader>ft", "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", desc = "Type Definitions" },
     { "<leader>fdi", "<CMD>lua require('telescope.builtin').diagnostics()<CR>", desc = "Diagnostics" },
     --
     { "<leader>fp", "<CMD>lua require('telescope.builtin').pickers()<CR>", desc = "Pickers" },
     { "<leader>fm", "<CMD>lua require('telescope.builtin').marks()<CR>", desc = "Marks" },
     { "<leader>fl", "<CMD>lua require('telescope.builtin').loclist()<CR>", desc = "Location List" },
+    {
+      "<leader>fw",
+      "<CMD>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+      desc = "Dynamically Lists LSP for all workspace symbols",
+    },
     { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
   },
   config = function()
@@ -194,7 +199,7 @@ return {
           },
           code_action = {
             telescope = {
-              require("telescope.themes").get_cursor({}), -- contoh untuk dropdown
+              require("telescope.themes").get_cursor({}),
             },
             no_results_message = "No code actions available",
             prefix = "",
@@ -224,6 +229,7 @@ return {
     -- To get ui-select loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
     require("telescope").load_extension("ui-select")
+    require("telescope").load_extension("lsp_handlers")
   end,
 }
 
