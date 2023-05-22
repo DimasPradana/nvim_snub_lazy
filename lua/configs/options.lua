@@ -9,7 +9,7 @@ require("tokyonight").load()
 -- Visual
 vim.o.conceallevel = 0 -- Make `` Visible in Markdown
 -- vim.o.cmdheight = 1 -- Better Error Messages
-vim.o.cmdheight = 0 -- disable command-line when not being used
+vim.o.cmdheight = 1 -- disable command-line when not being used
 vim.o.showtabline = 1 -- Always Show Tabline
 vim.o.pumheight = 5 -- Pop up Menu Height
 vim.wo.number = true -- Display Line Number
@@ -48,7 +48,8 @@ vim.opt.complete:remove({
   "u", -- unload buffers
   "t", -- tag completion
 })
-vim.opt.shortmess = { -- shorten message in prompt window
+vim.opt.shortmess = {
+  -- shorten message in prompt window
   a = true, -- enable 'filmnrwx' flag
   o = true, -- overwrite message for writing a file with subsequent message for reading a file
   t = true, -- truncate file message at the start
@@ -200,13 +201,44 @@ let &t_RT = "\e[23;2t"
 " using a color theme with a background color in terminals such as
 " kitty that do not support background color erase.
 let &t_ut='' ]]
-
 -- winbar
 -- vim.o.winbar = "%{%v:lua.require('configs/util').eval()%}"
 
 -- navic
 -- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
+-- vim.opt.statusline = [[%= %{%v:lua.require'nvim-navic()'%} %p%% %l:%c]]
 vim.opt.statusline = " %(%r %)%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} "
+
+-- statusline
+local function status_line()
+  local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
+  -- local file_name = "%-.16t"
+  local file_name = "%F"
+  local buf_nr = "[%n]"
+  local modified = " %-m"
+  local file_type = " %y"
+  local right_align = "%="
+  local line_no = "%10([%l/%L%)]"
+  local pct_thru_file = "%5p%%"
+  local navic = "%{%v:lua.require'nvim-navic'.is_available()%}"
+  local cmdloc = "%-S"
+
+  return string.format(
+    "1 %s|2 %s|3 %s|4 %s|5 %s|6 %s|7 %s|8 %s|9 %s| 10 %s",
+    mode,
+    file_name,
+    buf_nr,
+    modified,
+    file_type,
+    navic,
+    right_align,
+    line_no,
+    pct_thru_file,
+    cmdloc
+  )
+end
+
+-- vim.opt.statusline = status_line() -- winbar untuk tampil diatas, statuline untuk dibawah
 
 -- formatter on save
 -- vim.api.nvim_exec(

@@ -65,7 +65,7 @@ return {
     { "<leader>fm", "<CMD>lua require('telescope.builtin').marks()<CR>", desc = "Marks" },
     { "<leader>fl", "<CMD>lua require('telescope.builtin').loclist()<CR>", desc = "Location List" },
     {
-      "<leader>fw",
+      "<leader>fdw",
       "<CMD>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
       desc = "Dynamically Lists LSP for all workspace symbols",
     },

@@ -53,10 +53,18 @@ return {
           Operator = " ",
           TypeParameter = " ",
         },
+        lsp = {
+          --[[ auto_attach = false,
+          preference = nil, ]]
+          auto_attach = true,
+          preference = nil,
+        },
         highlight = false,
         separator = " > ",
         depth_limit = 0,
         depth_limit_indicator = "..",
+        safe_output = true,
+        click = false,
       })
     end,
   },
