@@ -42,7 +42,7 @@ return {
   },
   keys = {
     { "<leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>", desc = "Find Files" },
-    { "<leader>fb", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
+    -- { "<leader>fb", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
     { "<leader>fg", "<CMD>lua require('telescope.builtin').grep_string()<CR>", desc = "Grep String" },
     { "<leader>fw", "<CMD>lua require('telescope.builtin').live_grep()<CR>", desc = "Live Grep" },
     { "<leader>fc", "<CMD>lua require('telescope.builtin').commands()<CR>", desc = "Commands" },
