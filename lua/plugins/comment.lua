@@ -5,6 +5,9 @@ return {
     local api = require("Comment.api")
     local map = vim.keymap.setup
 
+    -- python comment
+    ft.set("py", "#%s", "'''%s'''")
+
     require("Comment").setup({
       ---Add a space b/w comment and the line
       padding = true,
