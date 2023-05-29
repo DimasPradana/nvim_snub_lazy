@@ -17,7 +17,8 @@ return {
       desc = "toggle neotree",
     },
     {
-      "<leader>eb",
+      -- "<leader>eb",
+      "<leader><leader>",
       "<CMD>Neotree action=focus source=buffers position=right toggle=true<CR>",
       desc = "toggle buffer",
     },
