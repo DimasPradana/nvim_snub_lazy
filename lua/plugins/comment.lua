@@ -4,6 +4,7 @@ return {
   config = function()
     local api = require("Comment.api")
     local map = vim.keymap.setup
+    local ft = require("Comment.ft")
 
     -- python comment
     ft.set("py", "#%s", "'''%s'''")
