@@ -261,15 +261,15 @@ end
 -- )
 
 -- Highlight on yank
-vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup END
-]],
-  false
-)
+-- vim.api.nvim_exec(
+--   [[
+--   augroup YankHighlight
+--     autocmd!
+--     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+--   augroup END
+-- ]],
+--   false
+-- )
 
 -- NOTE: cabbrev from W to w
 vim.cmd([[
