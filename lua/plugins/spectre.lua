@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  event = "BufRead",
+  event = "BufReadPost",
   config = function()
     require("spectre").setup({
 

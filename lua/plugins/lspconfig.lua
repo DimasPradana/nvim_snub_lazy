@@ -42,7 +42,7 @@ return {
 
   { --{{{ formatter
     "jose-elias-alvarez/null-ls.nvim",
-    event = "BufRead",
+    event = "BufReadPost",
     config = function()
       -- require("configs.util").cetak("masuk mid")
 

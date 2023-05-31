@@ -17,7 +17,7 @@ return {
     -- moar textobjects
     {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      event = "BufRead",
+      -- event = "BufReadPre",
       dependencies = "nvim-treesitter",
     },
 

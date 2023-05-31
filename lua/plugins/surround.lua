@@ -1,6 +1,7 @@
 return {
   "ur4ltz/surround.nvim",
-  event = "BufRead",
+  -- event = "BufRead",
+  event = "InsertEnter",
   config = function()
     require("surround").setup({
       context_offset = 100,

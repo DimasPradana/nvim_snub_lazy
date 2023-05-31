@@ -67,5 +67,6 @@ return {
         click = false,
       })
     end,
+    event = "BufReadPre",
   },
 }
