@@ -1,3 +1,7 @@
+-- coba dibuat seperti ini
+-- https://github.com/alpha2phi/neovim-for-beginner/blob/22-autocmd/lua/config/whichkey.lua#L219
+-- dengan perintah :vsplit | terminal pnpm run dev
+
 return {
   "folke/which-key.nvim",
   config = function()
