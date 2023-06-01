@@ -18,3 +18,8 @@ vim.keymap.set("i", "<A-j>", "<down>")
 
 -- close buffer
 vim.keymap.set("n", "<A-j>", "<CMD>bd!<CR>")
+
+-- open terminal
+vim.keymap.set("n", "<F12>", "<CMD>vsplit | terminal<CR>")
+vim.keymap.set("x", "<F12>", "<CMD>vsplit | terminal<CR>")
+vim.keymap.set("i", "<F12>", "<CMD>vsplit | terminal<CR>")
