@@ -15,13 +15,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+--[[ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
   command = "checktime",
-})
+}) ]]
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--[[ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
   callback = function(event)
     if event.match:match("^%w%w+://") then
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     local file = vim.loop.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
-})
+}) ]]
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
