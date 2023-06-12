@@ -7,14 +7,32 @@ return {
   },
   config = function()
     require("colorizer").setup({
-      "css",
+      -- "css",
       "javascript",
+      "typescript",
+      -- "javascriptreact",
+      -- "typescriptreact",
       "go",
       html = {
         mode = "foreground",
       },
       svelte = {
         mode = "foreground",
+      },
+      css = {
+        mode = "foreground",
+        rgb_fn = true,
+        hsl_fn = true,
+      },
+      javascriptreact = {
+        mode = "background",
+        rgb_fn = true,
+        hsl_fn = true,
+      },
+      typescriptreact = {
+        mode = "background",
+        rgb_fn = true,
+        hsl_fn = true,
       },
     }, { mode = "background" })
   end,
