@@ -127,6 +127,7 @@ return {
           "^.idea/",
           "^.settings/",
           "^.vscode/",
+          "^.next/",
           "^.env/",
           "^__pycache__/",
           "^bin/",
