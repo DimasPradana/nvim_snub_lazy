@@ -2,7 +2,7 @@
 
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  branch = "v2.x",
+  branch = "v3.x",
   dependencies = {
     "ThePrimeagen/harpoon", -- optional
     "nvim-lua/plenary.nvim",
@@ -318,14 +318,13 @@ return {
             return { handled = true }
           end,
         },
-        {
+        --[[ {
           event = "file_opened",
-          -- handler = function(file_path)
           handler = function()
             --auto close
-            require("neo-tree").close_all()
+            require("neo-tree").close_window()
           end,
-        },
+        }, ]]
       },
       -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]]),
     })

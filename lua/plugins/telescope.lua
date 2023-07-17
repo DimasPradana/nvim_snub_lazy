@@ -39,10 +39,14 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
     "gbrlsnchs/telescope-lsp-handlers.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
+    --[[ {
+      "nvim-telescope/telescope-file-browser.nvim",
+      dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    }, ]]
   },
   keys = {
     { "<leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>", desc = "Find Files" },
-    -- { "<leader>fb", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
+    -- { "<leader><leader>", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
     { "<leader>fg", "<CMD>lua require('telescope.builtin').grep_string()<CR>", desc = "Grep String" },
     { "<leader>fw", "<CMD>lua require('telescope.builtin').live_grep()<CR>", desc = "Live Grep" },
     { "<leader>fc", "<CMD>lua require('telescope.builtin').commands()<CR>", desc = "Commands" },
@@ -56,9 +60,17 @@ return {
       desc = "Emoji",
     },
     -- LSP
-    { "<leader>fi", "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>", desc = "Implementations" },
+    {
+      "<leader>fi",
+      "<CMD>lua require('telescope.builtin').lsp_implementations()<CR>",
+      desc = "Implementations",
+    },
     { "<leader>fde", "<CMD>lua require('telescope.builtin').lsp_definitions()<CR>", desc = "Definitions" },
-    { "<leader>ft", "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>", desc = "Type Definitions" },
+    {
+      "<leader>ft",
+      "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>",
+      desc = "Type Definitions",
+    },
     { "<leader>fdi", "<CMD>lua require('telescope.builtin').diagnostics()<CR>", desc = "Diagnostics" },
     --
     { "<leader>fp", "<CMD>lua require('telescope.builtin').pickers()<CR>", desc = "Pickers" },
@@ -70,6 +82,7 @@ return {
       desc = "Dynamically Lists LSP for all workspace symbols",
     },
     { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
+    -- { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "File Explorer" },
   },
   config = function()
     require("telescope").setup({
@@ -173,7 +186,7 @@ return {
           },
         },
         buffers = {
-          theme = "ivy",
+          theme = "dropdown",
           prompt_prefix = "   ",
           path_display = { "smart" },
         },
@@ -211,6 +224,19 @@ return {
             -- even more opts
           }),
         },
+        --[[ file_browser = {
+          theme = "ivy",
+          -- disables netrw and use telescope-file-browser in its place
+          hijack_netrw = true,
+          mappings = {
+            ["i"] = {
+              -- your custom insert mode mappings
+            },
+            ["n"] = {
+              -- your custom normal mode mappings
+            },
+          },
+        }, ]]
       },
       layout_config = {
         horizontal = {
@@ -231,6 +257,7 @@ return {
     -- load_extension, somewhere after setup function:
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("lsp_handlers")
+    -- require("telescope").load_extension("file_browser")
   end,
 }
 
