@@ -14,6 +14,7 @@ return {
     {
       "<leader>ee",
       "<CMD>Neotree action=focus source=filesystem position=left toggle=true<CR>",
+      -- "<CMD>Neotree reveal=true source=filesystem position=left toggle=true<CR>",
       desc = "toggle neotree",
     },
     {
@@ -25,7 +26,7 @@ return {
   },
   config = function()
     require("neo-tree").setup({
-      close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+      close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
@@ -207,14 +208,14 @@ return {
             { "git_status", highlight = "NeoTreeDimText" },
           },
         },
-        follow_current_file = true, -- This will find and focus the file in the active buffer every
+        follow_current_file = { enabled = true }, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position
         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-        use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+        use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
         -- instead of relying on nvim autocmd events.
 
         window = {
@@ -229,7 +230,8 @@ return {
         },
       },
       buffers = {
-        follow_current_file = true,
+        -- follow_current_file = true,
+        follow_current_file = { enabled = true },
         group_empty_dirs = true,
         show_unloaded = true,
         window = {
@@ -318,13 +320,13 @@ return {
             return { handled = true }
           end,
         },
-        --[[ {
+        {
           event = "file_opened",
-          handler = function()
+          handler = function(file_path)
             --auto close
-            require("neo-tree").close_window()
+            require("neo-tree.command").execute({ action = "close" })
           end,
-        }, ]]
+        },
       },
       -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]]),
     })
