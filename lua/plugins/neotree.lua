@@ -13,15 +13,25 @@ return {
   keys = {
     {
       "<leader>ee",
-      "<CMD>Neotree action=focus source=filesystem position=left toggle=true<CR>",
-      -- "<CMD>Neotree reveal=true source=filesystem position=left toggle=true<CR>",
+      function()
+        require("neo-tree.command").execute({
+          toggle = true,
+          source = "filesystem",
+          position = "left",
+        })
+      end,
       desc = "toggle neotree",
     },
     {
-      -- "<leader>eb",
       "<leader><leader>",
-      "<CMD>Neotree action=focus source=buffers position=right toggle=true<CR>",
-      desc = "toggle buffer",
+      function()
+        require("neo-tree.command").execute({
+          toggle = true,
+          source = "buffers",
+          position = "right",
+        })
+      end,
+      desc = "toggle buffers",
     },
   },
   config = function()
