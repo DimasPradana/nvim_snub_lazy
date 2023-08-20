@@ -8,8 +8,8 @@ require("tokyonight").load()
 
 -- Visual
 vim.o.conceallevel = 0 -- Make `` Visible in Markdown
--- vim.o.cmdheight = 1 -- Better Error Messages
-vim.o.cmdheight = 0 -- disable command-line when not being used
+vim.o.cmdheight = 1 -- Better Error Messages
+-- vim.o.cmdheight = 0 -- disable command-line when not being used
 vim.o.showtabline = 1 -- Always Show Tabline
 vim.o.pumheight = 5 -- Pop up Menu Height
 vim.wo.number = true -- Display Line Number
