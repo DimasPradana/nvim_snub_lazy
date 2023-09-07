@@ -73,4 +73,7 @@ vim.keymap.set("n", "<A-K>", "<CMD>wincmd k<CR>")
 vim.keymap.set("n", "<A-J>", "<CMD>wincmd j<CR>")
 vim.keymap.set("n", "<A-H>", "<CMD>wincmd h<CR>")
 
+-- open copilot panel
+vim.keymap.set("i", "<F11>", "<CMD>Copilot panel<CR>")
+
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
