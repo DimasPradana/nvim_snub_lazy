@@ -67,4 +67,10 @@ vim.keymap.set("n", "<F12>", "<CMD>vsplit | terminal<CR>")
 vim.keymap.set("x", "<F12>", "<CMD>vsplit | terminal<CR>")
 vim.keymap.set("i", "<F12>", "<CMD>vsplit | terminal<CR>")
 
+-- pindah ke split
+vim.keymap.set("n", "<A-L>", "<CMD>wincmd l<CR>")
+vim.keymap.set("n", "<A-K>", "<CMD>wincmd k<CR>")
+vim.keymap.set("n", "<A-J>", "<CMD>wincmd j<CR>")
+vim.keymap.set("n", "<A-H>", "<CMD>wincmd h<CR>")
+
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
