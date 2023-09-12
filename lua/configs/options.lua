@@ -305,4 +305,11 @@ vim.cmd([[
 vim.diagnostic.config({
   virtual_text = false,
 })
+
+-- NOTE: waktu commandline aktif, ubah relative toogle menjadi number
+vim.cmd([[
+  autocmd!
+  autocmd CmdLineEnter : set norelativenumber | redraw
+  autocmd CmdLineLeave : set relativenumber
+]])
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
