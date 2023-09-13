@@ -103,6 +103,7 @@ return {
       "html",
       "java",
       "javascript",
+      "jsdoc",
       "json",
       "kotlin",
       "lua",
