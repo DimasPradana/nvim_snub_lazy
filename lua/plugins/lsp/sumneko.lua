@@ -28,14 +28,17 @@ require("lspconfig").lua_ls.setup({
       },
       workspace = {
         library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          --[[ [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
           ["/usr/share/awesome/lib"] = true,
           ["/usr/share/lua/5.1"] = true,
           ["/usr/share/lua/5.3"] = true,
-          ["/usr/share/lua/5.4"] = true,
+          ["/usr/share/lua/5.4"] = true, ]]
+          ["/home/snub/repos/lua-language-server/bin"] = true,
         },
+        checkThirdParty = false,
       },
+      hint = { enable = true },
     },
   },
   -- on_attach = function(client)

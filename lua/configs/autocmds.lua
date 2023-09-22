@@ -5,6 +5,7 @@
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
+-- local lsp_utils = require("nvim.utils.lsp")
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -55,3 +56,29 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- inlay hint
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--[[ group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint(args.buf, true)
+    end
+    -- whatever other lsp config you want
+  end, ]]
+--[[ callback = function(ev)
+    local client = lsp_utils.get_client(ev)
+    if client.name ~= "gopls" then
+      return
+    end
+
+    client.config = vim.tbl_deep_extend("force", client.config, {
+      settings = {
+        gopls = {
+          hint = { enable = true, arrayIndex = "Enable", setType = true },
+        },
+      },
+    })
+  end, ]]
+-- })

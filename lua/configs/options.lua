@@ -33,7 +33,7 @@ vim.wo.foldnestmax = 3
 vim.wo.foldminlines = 1
 
 vim.opt.laststatus = 3
-vim.opt.pastetoggle = "<F2>"
+-- vim.opt.pastetoggle = "<F2>"
 vim.opt.pumblend = 10 -- pseudo-transparency for the popup-menu, value : 0 - 100
 vim.opt.clipboard = "unnamedplus" -- access system clipboard
 vim.opt.cursorline = true -- highlight current line

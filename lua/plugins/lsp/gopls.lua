@@ -1,6 +1,7 @@
 local c = require("plugins/lsp/utils")
 local navic = require("nvim-navic")
 local u = require("configs/util")
+-- local inlay_hint = vim.lsp.inlay_hint
 
 require("lspconfig").gopls.setup({
   cmd = { "gopls", "serve" },
@@ -20,6 +21,9 @@ require("lspconfig").gopls.setup({
       },
       gofumpt = true,
       code_action = true,
+      -- coba hints
+      -- lsp_inlay_hints = { },
+      completion = { callSnippet = "Replace" },
     },
   },
   -- auto commands
