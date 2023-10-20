@@ -69,8 +69,7 @@ return {
     config = function()
       -- require("configs.util").cetak("masuk mid")
 
-      -- local null_ls = require("null-ls")
-      local null_ls = require("none-ls")
+      local null_ls = require("null-ls")
 
       null_ls.setup({
         debug = false,
