@@ -63,12 +63,14 @@ return {
   }, --}}}
 
   { --{{{ formatter
-    "jose-elias-alvarez/null-ls.nvim",
+    -- "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = "BufReadPost",
     config = function()
       -- require("configs.util").cetak("masuk mid")
 
-      local null_ls = require("null-ls")
+      -- local null_ls = require("null-ls")
+      local null_ls = require("none-ls")
 
       null_ls.setup({
         debug = false,
