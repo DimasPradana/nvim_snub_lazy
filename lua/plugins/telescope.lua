@@ -39,10 +39,10 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
     "gbrlsnchs/telescope-lsp-handlers.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
-    --[[ {
+    {
       "nvim-telescope/telescope-file-browser.nvim",
       dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    }, ]]
+    },
   },
   keys = {
     { "<leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>", desc = "Find Files" },
@@ -82,7 +82,7 @@ return {
       desc = "Dynamically Lists LSP for all workspace symbols",
     },
     { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
-    -- { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "File Explorer" },
+    { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "File Explorer" },
   },
   config = function()
     require("telescope").setup({
@@ -224,7 +224,7 @@ return {
             -- even more opts
           }),
         },
-        --[[ file_browser = {
+        file_browser = {
           theme = "ivy",
           -- disables netrw and use telescope-file-browser in its place
           hijack_netrw = true,
@@ -236,7 +236,7 @@ return {
               -- your custom normal mode mappings
             },
           },
-        }, ]]
+        },
       },
       layout_config = {
         horizontal = {
@@ -257,7 +257,7 @@ return {
     -- load_extension, somewhere after setup function:
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("lsp_handlers")
-    -- require("telescope").load_extension("file_browser")
+    require("telescope").load_extension("file_browser")
   end,
 }
 
