@@ -72,7 +72,7 @@ return {
       enable = true,
       filetypes = { "html", "xml", "javascriptreact", "typescriptreact", "svelte", "javascript", "typescript" },
     }, ]]
-    context_commentstring = { enable = true, enable_autocmd = false },
+    -- context_commentstring = { enable = true, enable_autocmd = false },
     refactor = {
       highlight_definitions = { enable = true },
       smart_rename = {
@@ -317,6 +317,7 @@ return {
       zindex = 20, -- The Z-index of the context window
       on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
     })
+    require("ts_context_commentstring").setup()
   end,
 }
 

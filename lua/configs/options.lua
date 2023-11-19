@@ -153,6 +153,9 @@ vim.g.loaded_man = false
 vim.g.loaded_remote_plugins = false
 vim.g.did_load_filetypes = false
 
+-- speed up treesitter context commentstring
+vim.g.skip_ts_context_commentstring_module = true
+
 -- kitty
 -- " Mouse support
 -- vim.o.mouse = a
