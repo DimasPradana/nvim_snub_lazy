@@ -4,7 +4,7 @@
 
 -- load colorscheme
 require("tokyonight").load()
--- vim.cmd("colorscheme murphy")
+-- vim.cmd("colorscheme desert")
 
 -- Visual
 vim.o.conceallevel = 0 -- Make `` Visible in Markdown
