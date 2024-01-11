@@ -66,6 +66,9 @@ vim.keymap.set("n", "<A-j>", "<CMD>bd!<CR>")
 vim.keymap.set("n", "<F12>", "<CMD>vsplit | terminal<CR>")
 vim.keymap.set("x", "<F12>", "<CMD>vsplit | terminal<CR>")
 vim.keymap.set("i", "<F12>", "<CMD>vsplit | terminal<CR>")
+vim.keymap.set("n", "<F11>", "<CMD>split | terminal<CR>")
+vim.keymap.set("x", "<F11>", "<CMD>split | terminal<CR>")
+vim.keymap.set("i", "<F11>", "<CMD>split | terminal<CR>")
 
 -- pindah ke split
 vim.keymap.set("n", "<A-L>", "<CMD>wincmd l<CR>")
