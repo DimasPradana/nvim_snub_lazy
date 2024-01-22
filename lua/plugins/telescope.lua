@@ -33,9 +33,9 @@ return {
   dependencies = {
     { "nvim-lua/popup.nvim" },
     { "nvim-lua/plenary.nvim" },
-    -- "nvim-telescope/telescope-frecency.nvim",
+    "nvim-telescope/telescope-frecency.nvim",
     -- "nvim-telescope/telescope-media-files.nvim",
-    -- "nvim-telescope/telescope-fzy-native.nvim",
+    "nvim-telescope/telescope-fzy-native.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     "gbrlsnchs/telescope-lsp-handlers.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
@@ -83,6 +83,7 @@ return {
     },
     { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
     { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "File Explorer" },
+    { "<leader><leader>", "<CMD>Telescope buffers<CR>", desc = "Buffers" },
   },
   config = function()
     require("telescope").setup({
@@ -171,6 +172,11 @@ return {
             "--ignore",
             "--hidden",
             "--files",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
           },
         },
         --[[ grep_string = {
@@ -237,6 +243,10 @@ return {
             },
           },
         },
+        fzy_native = {
+          override_generic_sorter = false,
+          override_file_sorter = true,
+        },
       },
       layout_config = {
         horizontal = {
@@ -258,6 +268,8 @@ return {
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension("lsp_handlers")
     require("telescope").load_extension("file_browser")
+    -- require("telescope").load_extension("frecency")
+    require("telescope").load_extension("fzy_native")
   end,
 }
 
