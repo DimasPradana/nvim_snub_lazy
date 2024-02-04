@@ -22,6 +22,7 @@ local TelescopePrompt = {
   }, ]]
 }
 
+
 for hl, col in pairs(TelescopePrompt) do
   vim.api.nvim_set_hl(0, hl, col)
 end
@@ -45,15 +46,15 @@ return {
     },
   },
   keys = {
-    { "<leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>", desc = "Find Files" },
+    { "<leader>ff", "<CMD>lua require('telescope.builtin').find_files()<CR>",  desc = "Find Files" },
     -- { "<leader><leader>", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffers" },
     { "<leader>fg", "<CMD>lua require('telescope.builtin').grep_string()<CR>", desc = "Grep String" },
-    { "<leader>fw", "<CMD>lua require('telescope.builtin').live_grep()<CR>", desc = "Live Grep" },
-    { "<leader>fc", "<CMD>lua require('telescope.builtin').commands()<CR>", desc = "Commands" },
-    { "<leader>fk", "<CMD>lua require('telescope.builtin').keymaps()<CR>", desc = "Keymaps" },
-    { "<leader>fr", "<CMD>lua require('telescope.builtin').registers()<CR>", desc = "Registers" },
-    { "<leader>fh", "<CMD>lua require('telescope.builtin').highlights()<CR>", desc = "Highlights" },
-    { "<leader>fo", "<CMD>TodoTelescope<CR>", desc = "Todo Telescope" },
+    { "<leader>fw", "<CMD>lua require('telescope.builtin').live_grep()<CR>",   desc = "Live Grep" },
+    { "<leader>fc", "<CMD>lua require('telescope.builtin').commands()<CR>",    desc = "Commands" },
+    { "<leader>fk", "<CMD>lua require('telescope.builtin').keymaps()<CR>",     desc = "Keymaps" },
+    { "<leader>fr", "<CMD>lua require('telescope.builtin').registers()<CR>",   desc = "Registers" },
+    { "<leader>fh", "<CMD>lua require('telescope.builtin').highlights()<CR>",  desc = "Highlights" },
+    { "<leader>fo", "<CMD>TodoTelescope<CR>",                                  desc = "Todo Telescope" },
     {
       "<leader>fe",
       "<CMD>lua require('telescope.builtin').symbols{sources = {'emoji','kaomoji','gitmoji'}}<CR>",
@@ -71,21 +72,22 @@ return {
       "<CMD>lua require('telescope.builtin').lsp_type_definitions()<CR>",
       desc = "Type Definitions",
     },
-    { "<leader>fdi", "<CMD>lua require('telescope.builtin').diagnostics()<CR>", desc = "Diagnostics" },
+    { "<leader>fdi", "<CMD>lua require('telescope.builtin').diagnostics()<CR>",     desc = "Diagnostics" },
     --
-    { "<leader>fp", "<CMD>lua require('telescope.builtin').pickers()<CR>", desc = "Pickers" },
-    { "<leader>fm", "<CMD>lua require('telescope.builtin').marks()<CR>", desc = "Marks" },
-    { "<leader>fl", "<CMD>lua require('telescope.builtin').loclist()<CR>", desc = "Location List" },
+    { "<leader>fp",  "<CMD>lua require('telescope.builtin').pickers()<CR>",         desc = "Pickers" },
+    { "<leader>fm",  "<CMD>lua require('telescope.builtin').marks()<CR>",           desc = "Marks" },
+    { "<leader>fl",  "<CMD>lua require('telescope.builtin').loclist()<CR>",         desc = "Location List" },
     {
       "<leader>fdw",
       "<CMD>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
       desc = "Dynamically Lists LSP for all workspace symbols",
     },
-    { "<leader>fa", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
-    { "<leader>fb", "<CMD>Telescope file_browser<CR>", desc = "File Explorer" },
-    { "<leader><leader>", "<CMD>Telescope buffers<CR>", desc = "Buffers" },
+    { "<leader>fa",       "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Actions" },
+    { "<leader>fb",       "<CMD>Telescope file_browser<CR>",        desc = "File Explorer" },
+    { "<leader><leader>", "<CMD>Telescope buffers<CR>",             desc = "Buffers" },
   },
   config = function()
+    local fb_actions = require "telescope._extensions.file_browser.actions"
     require("telescope").setup({
       defaults = {
         layout_strategy = "flex",
@@ -232,14 +234,63 @@ return {
         },
         file_browser = {
           theme = "ivy",
-          -- disables netrw and use telescope-file-browser in its place
-          hijack_netrw = true,
+          path = vim.loop.cwd(),
+          cwd = vim.loop.cwd(),
+          cwd_to_path = false,
+          grouped = false,
+          files = true,
+          add_dirs = true,
+          depth = 1,
+          auto_depth = false,
+          select_buffer = false,
+          hidden = { file_browser = true, folder_browser = true },
+          respect_gitignore = vim.fn.executable "fd" == 1,
+          no_ignore = false,
+          follow_symlinks = false,
+          browse_files = require("telescope._extensions.file_browser.finders").browse_files,
+          browse_folders = require("telescope._extensions.file_browser.finders").browse_folders,
+          hide_parent_dir = false,
+          collapse_dirs = false,
+          prompt_path = false,
+          quiet = false,
+          dir_icon = "",
+          dir_icon_hl = "Default",
+          display_stat = { date = true, size = true, mode = true },
+          hijack_netrw = false,
+          use_fd = true,
+          git_status = true,
           mappings = {
             ["i"] = {
-              -- your custom insert mode mappings
+              ["<A-c>"] = fb_actions.create,
+              ["<S-CR>"] = fb_actions.create_from_prompt,
+              ["<A-r>"] = fb_actions.rename,
+              ["<A-m>"] = fb_actions.move,
+              ["<A-y>"] = fb_actions.copy,
+              ["<A-d>"] = fb_actions.remove,
+              ["<C-o>"] = fb_actions.open,
+              ["<C-g>"] = fb_actions.goto_parent_dir,
+              ["<C-e>"] = fb_actions.goto_home_dir,
+              ["<C-w>"] = fb_actions.goto_cwd,
+              ["<C-t>"] = fb_actions.change_cwd,
+              ["<C-f>"] = fb_actions.toggle_browser,
+              ["<A-h>"] = fb_actions.toggle_hidden,
+              ["<C-s>"] = fb_actions.toggle_all,
+              ["<bs>"] = fb_actions.backspace,
             },
             ["n"] = {
-              -- your custom normal mode mappings
+              ["c"] = fb_actions.create,
+              ["r"] = fb_actions.rename,
+              ["m"] = fb_actions.move,
+              ["y"] = fb_actions.copy,
+              ["d"] = fb_actions.remove,
+              ["o"] = fb_actions.open,
+              ["g"] = fb_actions.goto_parent_dir,
+              ["e"] = fb_actions.goto_home_dir,
+              ["w"] = fb_actions.goto_cwd,
+              ["t"] = fb_actions.change_cwd,
+              ["f"] = fb_actions.toggle_browser,
+              ["h"] = fb_actions.toggle_hidden,
+              ["s"] = fb_actions.toggle_all,
             },
           },
         },
