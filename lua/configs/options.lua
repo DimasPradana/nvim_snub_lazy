@@ -1,6 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+local fn = vim.fn
 
 -- load colorscheme
 require("tokyonight").load()
@@ -209,39 +210,49 @@ let &t_ut='' ]]
 
 -- navic
 -- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
--- vim.opt.statusline = [[%= %{%v:lua.require'nvim-navic()'%} %p%% %l:%c]]
-vim.opt.statusline = " %(%r %)%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} "
+-- vim.opt.statusline = [[%= %{%v:lua.require'nvim-navic().get_location()'%} %p%% %l:%c]]
+-- vim.opt.statusline = " %(%r %)%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} "
+-- vim.opt.statusline = "%{%&bt==''?&ft==''?'%f':'%f %LL %m%=%l,%-2c':''%} %{%v:lua.require'nvim-navic'.get_location()%}"
+-- vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P" -- default
+-- vim.opt.statusline = "%<%f %h%m%r %=%-14.(%l,%c%V%)%{%v:lua.require'nvim-navic'.get_location()%} %P %y %w" -- tengah gagal
 
 -- statusline
 local function status_line()
   local mode = "%-5{%v:lua.string.upper(v:lua.vim.fn.mode())%}"
+  -- local mode = "%{%v:lua.vim.fn.mode()%}"
   -- local file_name = "%-.16t"
-  local file_name = "%F"
+  local file_name = "%f"
   local buf_nr = "[%n]"
   local modified = " %-m"
-  local file_type = " %y"
+  local file_type = "%y"
   local right_align = "%="
   local line_no = "%10([%l/%L%)]"
   local pct_thru_file = "%5p%%"
-  local navic = "%{%v:lua.require'nvim-navic'.is_available()%}"
+  -- local navic = "%{%v:lua.require'nvim-navic'.is_available()%}"
+  local navic = "%{%v:lua.require'nvim-navic'.get_location()%}"
   local cmdloc = "%-S"
+  --[[ local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
+  local icon = require("nvim-web-devicons").get_icon(file_name, file_ext, { default = true }) ]]
 
   return string.format(
-    "1 %s|2 %s|3 %s|4 %s|5 %s|6 %s|7 %s|8 %s|9 %s| 10 %s",
+    -- "1 %s| 2 %s|3 %s|4 %s|5 %s|6 %s|7 %s|8 %s|9 %s| 10 %s",
+    "%s %s %s %s %s %s %s %s %s %s",
     mode,
+    right_align,
     file_name,
     buf_nr,
     modified,
+    right_align,
     file_type,
     navic,
-    right_align,
     line_no,
-    pct_thru_file,
+    -- pct_thru_file,
+    -- icon,
     cmdloc
   )
 end
 
--- vim.opt.statusline = status_line() -- winbar untuk tampil diatas, statuline untuk dibawah
+vim.opt.statusline = status_line() -- winbar untuk tampil diatas, statuline untuk dibawah
 
 -- formatter on save
 -- vim.api.nvim_exec(
@@ -310,9 +321,9 @@ vim.diagnostic.config({
 })
 
 -- NOTE: waktu commandline aktif, ubah relative toogle menjadi number
--- vim.cmd([[
---   autocmd!
---   autocmd CmdLineEnter : set norelativenumber | redraw
---   autocmd CmdLineLeave : set relativenumber
--- ]])
+vim.cmd([[
+  autocmd!
+  autocmd CmdLineEnter : set norelativenumber | redraw
+  autocmd CmdLineLeave : set relativenumber
+]])
 -- vim:fileencoding=utf-8:ft=lua:foldmethod=marker
